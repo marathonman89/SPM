@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" 
+"http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap>
+   <insert id="allowPrivilege" parameterClass="spm.user.Employee">
+   		INSERT
+   			INTO USER_ROLE(EMPLOYEE_ID, ROLE_ID)
+   		VALUES
+   			(#employee_id#, #role_id#)
+   </insert>
+   <insert id="insertUser" parameterClass="spm.user.Employee">
+   		INSERT
+   			INTO SYSTEM_USER(USER_ID, USERNAME, PASSWORD, ACCT_STATUS)
+   			VALUES (#user_id#, #username#, #password#, #acct_status#)
+   </insert>
+</sqlMap>

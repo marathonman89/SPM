@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<link rel="stylesheet" type="text/css" href="css/default.css" />
+	<link rel="stylesheet" type="text/css" href="css/jquery.alerts.css"   media="screen" />
+	<!--link rel="icon" type="image/gif" href="newIMG/favicon.gif"-->
+	<link rel="stylesheet" type="text/css" href="css/jquery.ui.all.css" />
+
+	<script type="text/javascript" src="js/prototype.js"></script>
+	<script type="text/javascript" src="js/scriptaculous.js"></script>
+	<script type="text/javascript" src="js/jquery.js" ></script>
+	<script type="text/javascript" src="js/jquery.ui.draggable.js" ></script>
+	<script type="text/javascript" src="js/jquery.alerts.js" ></script>
+	<script type="text/javascript" src="js/jquery-1.4.2.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.core.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.widget.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.datepicker.js"></script>
+	<title>Scrum Project Manager v1.0</title>
+	
+	<script type="text/javascript">
+	function toggleDisp() {
+		for (var i=0;i<arguments.length;i++){
+			var d = $(arguments[i]);
+			if (d.style.display == 'none')
+				d.style.display = 'block';
+			else
+				d.style.display = 'none';
+		}
+	}
+
+	function toggleTab(num,numelems,opennum,animate) {
+		if ($('tabContent'+num).style.display == 'none'){
+			for (var i=1;i<=numelems;i++){
+				if ((opennum == null) || (opennum != i)){
+					var temph = 'tab'+i;
+					var h = $(temph);
+					if (!h){
+						var h = $('current');
+						h.id = temph;
+					}
+					var tempc = 'tabContent'+i;
+					var c = $(tempc);
+					if(c.style.display != 'none'){
+						if (animate || typeof animate == 'undefined')
+							Effect.toggle(tempc,'appear',{duration:1, queue:{scope:'menus', limit: 3}});
+						else
+							toggleDisp(tempc);
+					}
+				}
+			}
+			var h = $('tab'+num);
+			if (h)
+				h.id = 'current';
+			h.blur();
+			var c = $('tabContent'+num);
+			c.style.marginTop = '2px';
+			if (animate || typeof animate == 'undefined'){
+				Effect.toggle('tabContent'+num,'appear',{duration:1, queue:{scope:'menus', position:'end', limit: 3}});
+			}else{
+				toggleDisp('tabContent'+num);
+			}
+		}
+	}
+	
+	// right click function disabled
+	var message="Sorry, The Function is Permanently Disabled!";
+	
+	///////////////////////////////////
+	function clickIE4(){
+		if (event.button==2){
+			alert(message);
+			return false;
+		}
+	}
+	
+	function clickNS4(e){
+		if (document.layers||document.getElementById&&!document.all){
+			if (e.which==2||e.which==3){
+				jAlert(message);
+				return false;
+			}
+		}
+	}
+	
+	if (document.layers){
+		document.captureEvents(Event.MOUSEDOWN);
+		document.onmousedown=clickNS4;
+	}
+	else if (document.all&&!document.getElementById){
+		document.onmousedown=clickIE4;
+	}
+	document.oncontextmenu=new Function("jAlert(message);return false")
+	
+	//end of right click function disabled 
+	
+	$(function() {
+		$('#bdate').datepicker({
+			changeMonth: true,
+			changeYear: true,
+			yearRange: '1960:1995',
+			dateFormat: 'mm-dd-yy'
+		});
+	});
+	
+	</script>	
+</head>
+
+<!-- default margin = default layout -->
+<body style="margin: 0 12%;">
+
+<div class="container">
+
+	<div class="header">
+		<a href="index.html"><span>Scrum Project Manager v1.0</span></a>
+	</div>
+
+	<div class="stripes"><span></span></div>
+	<wicket:child/>
+	<!--div class="nav">
+		<a href="index.html">Home</a>
+		<a href="index.html">About</a>
+		<a href="index.html">Contact Us</a>
+		<div class="clearer"><span></span></div>
+	</div>
+
+	<div class="stripes"><span></span></div>
+
+	<div class="main">
+	
+		<div class="left">
+
+			<div class="content">
+
+				<h1>Porttitor posuere</h1>
+				<div class="descr">Jun 13, 2006 by Vulputate</div>
+
+				<p>In hac habitasse platea dictumst. Duis porttitor. Sed vulputate elementum nisl. Vivamus et mi at arcu mattis iaculis. <a href="index.html">Nunc eget pretium</a> diam. Pellentesque dictum faucibus leo. Vestibulum ac ante. Sed in est.</p>
+
+				<blockquote><p>Sed sodales nisl sit amet augue. Donec ultrices, augue ullamcorper posuere laoreet, turpis massa tristique justo, sed egestas metus magna sed purus.</p></blockquote>
+				
+				<p>Fusce porta pede nec eros. Maecenas ipsum sem, interdum non, aliquam vitae, interdum nec, metus. Maecenas ornare lobortis risus. Etiam placerat varius mauris. Maecenas viverra. Sed feugiat. Donec mattis <a href="index.html">quam aliquam</a> risus. Proin quis massa semper felis euismod ultricies.</p>
+
+				<h1>Adipiscing</h1>
+				<div class="descr">Jun 11, 2006 by Laoreet</div>
+
+				<p>Venenatis ac ante fusce accumsan enim et arcu. Duis sagittis libero at lacus. Suspendisse lacinia nulla eget urna.</p>
+
+				<ul>
+					<li>Tristique</li>
+					<li>Aenean</li>
+					<li>Pretium</li>
+				</ul>
+
+				<p>In hac habitasse platea dictumst. Duis porttitor. Sed vulputate elementum nisl. Vivamus et mi at arcu mattis iaculis. Fusce eleifend, dui ut posuere auctor, justo elit posuere sapien, at blandit enim quam fringilla mi.</p>
+
+				<h1>Interdum</h1>
+				<div class="descr">May 24, 2006 by Lectus</div>
+
+				<p>Praesent nisi sem, bibendum in, ultrices sit amet, euismod sit amet, dui. Fusce nibh. Curabitur pellentesque, lectus at <a href="index.html">volutpat interdum</a>. Pellentesque a nibh quis nunc volutpat aliquam</p>
+				
+				<code>margin-bottom: 12px;
+font-size: 1.1em;
+background: url(img/quote.gif);
+padding-left: 28px;
+color: #555;</code>
+
+				<p>Eget feugiat est leo tempor quam. Ut quis neque convallis magna consequat molestie.</p>
+			
+			</div>
+
+		</div>
+
+		<div class="right">
+
+			<div class="subnav">
+
+				<h1>Auctor</h1>
+				<p>In hac habitasse platea dictumst. Duis auctor. Sed vulputate elementum nisl. Vivamus et mi at arcu mattis iaculis. Fusce eleifend, dui ut posuere auctor, justo elit posuere sapien.</p>
+
+				<h1>Duis Elit</h1>
+				<ul>
+					<li><a href="index.html">consequat molestie</a></li>
+					<li><a href="index.html">sem justo</a></li>
+					<li><a href="index.html">semper</a></li>
+					<li><a href="index.html">magna sed purus</a></li>
+				</ul>
+
+				<h1>Sapien</h1>
+				<ul>
+					<li><a href="index.html">sociis natoque</a></li>
+					<li><a href="index.html">magna sed purus</a></li>
+					<li><a href="index.html">tincidunt</a></li>
+				</ul>
+
+				<h1>Blandit Enim</h1>
+				<ul>
+					<li><a href="index.html">consequat molestie</a></li>
+					<li><a href="index.html">sem justo</a></li>
+					<li><a href="index.html">semper</a></li>
+					<li><a href="index.html">magna sed purus</a></li>
+				</ul>
+
+				<h1>Fringilla</h1>
+				<ul>
+					<li><a href="index.html">sociis natoque</a></li>
+					<li><a href="index.html">magna sed purus</a></li>
+					<li><a href="index.html">tincidunt</a></li>
+				</ul>
+
+			</div>
+
+		</div>
+
+		<div class="clearer"><span></span></div>
+
+	</div-->
+
+	<div class="footer">
+
+			<div class="bottom">
+				<p align=center>Powered by: <img style="vertical-align:bottom;" src="img/wicket.png"/> <a href="http://wicket.apache.org/" target="_BLANK">Apache Wicket</a></p>
+				<p align=center>&copy;2010&nbsp; Software Engineering II &nbsp;All Rights Reserved<br/>
+				Developed by: Eugie Limpin, Mark Anthony Manlimos, and Charry Mae Yañez</p>			
+				<span class="left">&copy; 2006 <a href="index.html">Scrum Project Manager v1.0</a>. Valid <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> &amp; <a href="http://validator.w3.org/check?uri=referer">XHTML</a>.</span>
+				<span class="right">Template design by <a href="http://arcsin.se">Arcsin</a> | Modified by <a href="#">Marathonman89</a></span>
+				<div class="clearer"><span></span></div>
+			</div>
+	</div>
+</div>
+</body>
+</html>
